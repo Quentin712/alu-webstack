@@ -15,14 +15,14 @@ defaults
 
 frontend http_front
     bind *:80
-    redirect scheme https code 301
+    redirect scheme https code 301 if !{ ssl_fc }
 
 frontend https_front
-    bind *:443 ssl crt /etc/ssl/certs/www.mellowjr.tech.pem
+    bind *:443 ssl crt /etc/ssl/certs/www.ntorequentin.tech.pem
     default_backend web_servers
 
 backend web_servers
     balance roundrobin
     option httpchk GET /
-    server web-01 18.130.141.151:80 check
-    server web-02 18.171.135.64:80 check
+    server 7375-web-01 13.40.19.34:80 check
+    server 7375-web-02 3.10.58.140:80 check
